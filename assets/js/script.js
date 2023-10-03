@@ -25,6 +25,7 @@ $( document ).ready(function() {
         const city = $("#city").val();
         getCityWeather(city);
 
+
         //Trying to add searched city to the local storage so 
 
         // var searchedCity = document.getElementById("#city");
@@ -33,7 +34,16 @@ $( document ).ready(function() {
 
         // savedData.append(city);
 
+        //localStorage.setItem(savedData, city.val());
+
     })
+    function savedCity(city) {
+        var searchedCity = JSON.parse(localStorage.getItem(city)) || [];
+        searchedCity.push(city);
+        localStorage.setItem('city', JSON.stringify(searchedCity));
+        savedData.append(city);
+    }
+
     function getCityWeather(city) {
         var weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
 
@@ -44,14 +54,17 @@ $( document ).ready(function() {
             return response.json();
         })
             .then(function(data) {
-
-                container.append(`<p>weather (for searched city): ${data.main.temp}</p>`);
-                container.append(`<p>wind speed (for searched city): ${data.wind.speed}</p>`);
-                container.append(`<p>humidity (for searched city): ${data.main.humidity}</p>`);
+                savedCity(city);
+                console.log(city);
+                container.append(`<p>Weather for ${city}: ${data.main.temp}</p>`);
+                container.append(`Wind speed for ${city}: ${data.wind.speed}</p>`);
+                container.append(`Humidity for ${city}: ${data.main.humidity}</p>`);
             })
             .then(function(){
                 getFiveDay(city);
             })
+
+
     }
     function getFiveDay(city) {
         var weatherUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + apiKey;
@@ -68,7 +81,8 @@ $( document ).ready(function() {
                 for(let i = 0; i<response.list.length; i+=8){
                     var data = response.list[i];
                     var container = $("<div></div>")
-                    container.append(`<h4> ${data.dt_txt.slice}</h4>`);
+                    //append the date and then append the variable - in day js
+                    container.append(`<h4> ${data.dt_txt}</h4>`);
                     container.append(`<p>weather (for searched city): ${data.main.temp}</p>`);
                     container.append(`<p>wind speed (for searched city): ${data.wind.speed}</p>`);
                     container.append(`<p>humidity (for searched city): ${data.main.humidity}</p>`);
@@ -78,3 +92,4 @@ $( document ).ready(function() {
             })
     }
 });
+
