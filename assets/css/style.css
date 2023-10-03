@@ -2,3 +2,17 @@
     margin: 25px;
     padding: 25px;
 }
+
+#weatherToday {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 25px;
+    padding: 25px;
+}
+
+#fiveDayHeader {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 25px;
+    padding: 25px;
+}
