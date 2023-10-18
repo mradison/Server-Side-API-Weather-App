@@ -1,5 +1,8 @@
+//This is the API key that we need to access the data from the weather app API
+
 const apiKey = "cd21aa2fdd5a548e8d8915692b4f694a";
 
+//This is where we create a function so the page displays the current day and time
 
 $( document ).ready(function() {
     console.log( "ready!" );
@@ -75,9 +78,11 @@ $( document ).ready(function() {
             return response.json();
         })
             .then(function(data) {
+                console.log(data);
                 container.empty()
                 savedCity(city);
                 console.log(city);
+                container.append(`${data.weather[0].icon}`)
                 container.append(`<p>Weather for ${city}: ${data.main.temp}</p>`);
                 container.append(`Wind speed for ${city}: ${data.wind.speed}</p>`);
                 container.append(`Humidity for ${city}: ${data.main.humidity}</p>`);
