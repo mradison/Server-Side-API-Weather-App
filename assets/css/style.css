@@ -1,18 +1,28 @@
+#top {
+display: block;
+align-items: center;
+
+}
+
 #currentDay {
     margin: 25px;
     padding: 25px;
 }
 
 #weatherToday {
+    display: flex;
     font-size: 25px;
     font-weight: bold;
     margin: 25px;
     padding: 25px;
+    justify-content: center;
 }
 
 #fiveDayHeader {
+    display: flex;
     font-size: 25px;
     font-weight: bold;
     margin: 25px;
     padding: 25px;
+    justify-content: center;
 }
