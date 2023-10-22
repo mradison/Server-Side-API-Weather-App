@@ -30,6 +30,8 @@ $(document).ready(function () {
 
     })
 
+    //This is where we stor the data in local storage and display a list of cities that the user has searched for 
+
     function savedCity(city) {
         var searchedCity = JSON.parse(localStorage.getItem('city')) || [];
 
@@ -57,6 +59,8 @@ $(document).ready(function () {
         getCityWeather(event.target.textContent)
     })
 
+    // This is where we get the weather and icon data from the API to display it on the webpage for the user
+
     function getCityWeather(city) {
         var weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
 
@@ -72,16 +76,19 @@ $(document).ready(function () {
 
                 var icon = data.weather[0].icon;
 
-                container.append(`<img src="https://openweathermap.org/img/wn/${icon}@2x.png"> </img>`)
+                container.append(`<p><img src="https://openweathermap.org/img/wn/${icon}@2x.png"> </img></p>`)
                 container.append(`<p>Weather for ${city}: ${data.main.temp}</p>`);
-                container.append(`Wind speed for ${city}: ${data.wind.speed}</p>`);
-                container.append(`Humidity for ${city}: ${data.main.humidity}</p>`);
+                container.append(`<p>Wind speed for ${city}: ${data.wind.speed}</p>`);
+                container.append(`<p>Humidity for ${city}: ${data.main.humidity}</p>`);
             })
             .then(function () {
                 getFiveDay(city);
             })
 
     }
+
+    // This is where we get the 5 day forecast from the API to display it on the webpage for the user
+
     function getFiveDay(city) {
         var weatherUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + apiKey;
 
@@ -98,12 +105,12 @@ $(document).ready(function () {
 
                     var forecastIcon = data.weather[0].icon;
 
-                    container.append(`<img src="https://openweathermap.org/img/wn/${forecastIcon}@2x.png"> </img>`)
+                    container.append(`<p><img src="https://openweathermap.org/img/wn/${forecastIcon}@2x.png"> </img></p>`)
 
                     container.append(`<h4> ${data.dt_txt}</h4>`);
-                    container.append(`<p>weather for ${city}: ${data.main.temp}</p>`);
-                    container.append(`<p>wind speed for ${city}: ${data.wind.speed}</p>`);
-                    container.append(`<p>humidity (for searched city): ${data.main.humidity}</p>`);
+                    container.append(`<p>Weather for ${city}: ${data.main.temp}</p>`);
+                    container.append(`<p>Wind speed for ${city}: ${data.wind.speed}</p>`);
+                    container.append(`<p>Humidity for ${city}: ${data.main.humidity}</p>`);
                     forcastContainer.append(container);
                 }
 

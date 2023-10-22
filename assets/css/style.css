@@ -1,28 +1,79 @@
+/* Here is the style for my webpage */
+
+body {
+    background-color: aquamarine;
+}
+
+h1 {
+    font-size: 50px;
+    text-decoration: underline;
+    font-weight: bold;
+    margin-left: 50px;
+}
+
+li {
+    margin: 5px;
+    padding: 5px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
 #top {
-display: block;
-align-items: center;
+    margin-left: 50px;
+    font-size: 25px;
 
 }
 
 #currentDay {
-    margin: 25px;
-    padding: 25px;
+    margin: 5px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: bold;
+    color: rgb(85, 83, 83);
 }
 
 #weatherToday {
     display: flex;
     font-size: 25px;
     font-weight: bold;
-    margin: 25px;
+    margin-top: 25px;
     padding: 25px;
     justify-content: center;
+    font-size: 40px;
+    text-decoration: underline;
+    font-style: italic;
 }
 
 #fiveDayHeader {
     display: flex;
-    font-size: 25px;
     font-weight: bold;
-    margin: 25px;
-    padding: 25px;
+    margin-top: 30px;
+    padding-top: 30px;
     justify-content: center;
+    font-size: 40px;
+    text-decoration: underline;
+    font-style: italic;
+}
+
+p,
+h4 {
+    margin-top: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    color: darkblue;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px) {
+
+    main,
+    nav,
+    body,
+    footer {
+        flex-direction: column;
+    }
 }
